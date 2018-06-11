@@ -1,0 +1,6 @@
+java.lang.Runtime.exec java.lang.String 0
+java.lang.Runtime.exec java.lang.String java.lang.String 1
+java.lang.Runtime.exec java.lang.String java.lang.String 1
+java.lang.Runtime.exec java.lang.String java.lang.String java.io.File 2
+java.lang.Runtime.exec java.lang.String java.lang.String 1
+java.lang.Runtime.exec java.lang.String java.lang.String java.io.File 2

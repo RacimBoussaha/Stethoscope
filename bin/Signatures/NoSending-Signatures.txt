@@ -1,0 +1,2 @@
+java.net.Socket.getOutputStream  -1
+java.net.DatagramPacket.send  java.net.DatagramPacket 0

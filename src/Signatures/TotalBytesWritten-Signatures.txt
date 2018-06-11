@@ -1,0 +1,4 @@
+java.io.OutputStream.write String 0
+OtherClass.b String String 1
+java.io.Writer.write java.lang.String 0
+javax.swing.JTextArea.write java.io.FileWriter 0

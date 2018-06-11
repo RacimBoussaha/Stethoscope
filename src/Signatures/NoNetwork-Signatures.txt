@@ -1,0 +1,12 @@
+java.net.DatagramPacket.<init>  -1
+java.net.DatagramSocket.<init>  -1
+java.net.MulticastSocket.<init>  -1
+java.net.DatagramSocketImpl.<init>  -1 
+java.net.InetAddress.<init>  -1
+java.net.ServerSocket.<init>  -1
+java.net.Socket.<init>  -1
+java.net.SocketAddress.<init>  -1
+java.net.URI.<init>  -1
+java.net.URL.<init>  -1
+java.net.URLConnection.<init>  -1
+java.net.HttpURLConnection.<init>  -1

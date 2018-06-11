@@ -1,0 +1,6 @@
+java.io.File.list  -1
+java.io.File.list java.io.FilenameFilter 0
+java.io.File.listFiles  -1
+java.io.File.listFiles java.io.FileFilter 0
+java.io.File.listFiles java.io.FilenameFilter 0
+java.io.File.listRoots -1
