@@ -1,32 +1,11 @@
-/*
-    BeepBeep palette for analyzing traces of method calls
-    Copyright (C) 2017 Raphaël Khoury, Sylvain Hallé
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-
 import static ca.uqac.lif.cep.Connector.INPUT;
 import static ca.uqac.lif.cep.Connector.OUTPUT;
 import static ca.uqac.lif.cep.Connector.connect;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.Connector.ConnectorException;
 import ca.uqac.lif.cep.functions.ArgumentPlaceholder;
@@ -48,23 +27,17 @@ import ca.uqac.lif.cep.sets.Wrap;
 import ca.uqac.lif.cep.tmf.Filter;
 import ca.uqac.lif.cep.tmf.Fork;
 
-/**
- * Chain of processors counting total bytes written by all methods in the
- * execution of the program
- * 
- * @author Sylvain Hallé
- */
+
+
 public class SecurityConstraints {
 	
 	public Pullable LimitBytesWrittenTotal(File Trace, File Signature, float max) {
-		
+
 		Pullable p = null;
 		try {
-			
 			LineReader feeder = new LineReader(new FileInputStream(Trace));
 			Fork f1 = new Fork(2);
 			Fork f2 = new Fork(1);
-			//Fork f2 = new Fork(2);
 			Filter fil1 = new Filter();
 			FunctionProcessor converter = new FunctionProcessor(StringToEvent.instance);
 			connect(feeder, converter);
@@ -80,7 +53,6 @@ public class SecurityConstraints {
 			connect(sum, f2);
 			connect(f2, max_fct_processor);
 			connect(max_fct_processor, 0, fil1, 1);
-
 			p = fil1.getPullableOutput();
 
 		} catch (ConnectorException | FileNotFoundException e) {
@@ -88,15 +60,11 @@ public class SecurityConstraints {
 			e.printStackTrace();
 		}
 
-		// long stopTime = System.currentTimeMillis();
-		// long elapsedTime = stopTime - startTime;
-		// System.out.println("temp d'execution "+elapsedTime+" Millis ");
 		return p;
-
 	}
 
 	public Pullable TotalBytesWritten(File Trace, File Signature) {
-		// Pull
+		
 		Pullable p = null;
 		try {
 			long startTime = System.currentTimeMillis();
@@ -118,12 +86,8 @@ public class SecurityConstraints {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// long stopTime = System.currentTimeMillis();
-		// long elapsedTime = stopTime - startTime;
-		// System.out.println("temp d'execution "+elapsedTime+" Millis ");
+		
 		return p;
-
 	}
 
 	public Pullable CallGraphPipe(File Trace)  {
@@ -173,7 +137,9 @@ public class SecurityConstraints {
 		
 		return p;
 	}
+	
 	public Pullable SetCallsReturn(File Trace)  {
+		
 		Pullable p = null;
 		try {
 		HashMap<Integer, MethodEvent> hm = new HashMap<Integer, MethodEvent>();
@@ -208,16 +174,11 @@ public class SecurityConstraints {
 		e.printStackTrace();
 	}
 
-	// long stopTime = System.currentTimeMillis();
-	// long elapsedTime = stopTime - startTime;
-	// System.out.println("temp d'execution "+elapsedTime+" Millis ");
 	return p;
 	}
 
-	
-	
 	public Pullable custom (File Trace, File Signature) {
-		// Pull
+	
 		Pullable p = null;
 		try {
 			
@@ -235,37 +196,8 @@ public class SecurityConstraints {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// long stopTime = System.currentTimeMillis();
-		// long elapsedTime = stopTime - startTime;
-		// System.out.println("temp d'execution "+elapsedTime+" Millis ");
+		
 		return p;
 
 	}
-	
-	public static void main(String[] args) throws FileNotFoundException, ConnectorException  {
-		//for (int i=0;i<11;i++) {
-		//File file2 = new File(SecurityConstraints.class.getResource("Trace.txt").getFile());
-		//File f2 = new File(SecurityConstraints.class.getResource("write-signatures.txt").getFile());
-		File file2 = new File("Trace1.txt");
-		File f2 = new File(SecurityConstraints.class.getResource("Signatures/LimitBytesWrittenTotal-Signatures.txt").getFile());
-		
-		SecurityConstraints df = new SecurityConstraints();
-		
-		long startTime1=System.currentTimeMillis();
-		//for (Object o : df.CallGraphPipe(file2)) {
-		// for (Object o : df.TotalBytesWritten(file2,f2)) {
-		//for (Object o : df.LimitBytesWrittenTotal(file2, f2, 10)) {
-		//for (Object o : df.SetCallsReturn(file2)) {
-			for (Object o : df.SetCallsReturn(file2)) {
-				System.out.println(" Call: " + o +" ID: "+((MethodCall)o).getId()+" Output: "+((MethodCall)o).getreturn()+ "\n");
-			//Scanner keyboard = new Scanner(System.in);
-			//int myint = keyboard.nextInt();
-		}
-		long stopTime1 = System.currentTimeMillis();
-		long elapsedTime1 = stopTime1 - startTime1;
-		System.out.print(elapsedTime1+","); }
-		
-	//}
-
 }
