@@ -17,8 +17,8 @@ First make sure you have the following installed:
 - AspectJ is an aspect-oriented programming (AOP) extension 
     
 - Download the sources for Stethoscope from GitHub or clone the repository using Git:
-
-    Src: git@github.com:liflab/RacimBoussaha/Stethoscope.git
+    
+    git@github.com:liflab/RacimBoussaha/Stethoscope.git
 
 - in Eclipse, create a new AspectJ project from the downloaded source code.
 
