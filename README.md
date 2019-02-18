@@ -8,7 +8,7 @@ The repository is separated across the following folders.
 
     Src: main source files
     
-# Use Sthetoscope
+# Using Sthetoscope
 
 1 - First make sure you have the following installed:
     
